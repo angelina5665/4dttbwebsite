@@ -1,0 +1,49 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "4dttb.vercel.app"
+        }
+      ],
+      "destination": "https://4dresult1.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "4dttb.vercel.app"
+        }
+      ],
+      "destination": "https://4dresult1.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "4dttb-psi.vercel.app"
+        }
+      ],
+      "destination": "https://4dresult1.com/",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "4dttb-psi.vercel.app"
+        }
+      ],
+      "destination": "https://4dresult1.com/:path*",
+      "permanent": true
+    }
+  ]
+}

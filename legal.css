@@ -1,0 +1,20 @@
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:#f4f5f7;color:#212529;font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;font-size:16px;line-height:1.6}
+a{color:inherit}
+.navbar{background:linear-gradient(180deg,#17181c,#24262c);border-bottom:2px solid #d9b45b}
+.navinner{max-width:900px;margin:0 auto;padding:0 16px;min-height:60px;display:flex;align-items:center;justify-content:center}
+.brand{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:#fff;border:1px solid #e3e3e3;border-radius:6px;padding:6px 14px}
+.brand b{color:#e01b24;font-size:24px;font-weight:800;letter-spacing:-.5px}
+.brand .live{background:#e01b24;color:#fff;font-size:9px;font-weight:700;letter-spacing:1px;padding:1px 4px;border-radius:2px;align-self:flex-start;margin-top:2px}
+main{max-width:900px;margin:28px auto;padding:0 16px}
+.panel{background:#fff;border:1px solid #dedede;border-radius:6px;box-shadow:0 1px 3px rgba(0,0,0,.08);padding:28px}
+h1{font-size:28px;line-height:1.25;margin:0 0 18px}
+h2{font-size:19px;line-height:1.35;margin:24px 0 6px}
+p{margin:0 0 12px}
+.updated{font-size:13px;color:#666}
+.actions{margin-top:24px}
+.actions a{display:inline-block;color:#fff;background:#333;text-decoration:none;border-bottom:2px solid #d9b45b;border-radius:4px;padding:8px 14px;font-weight:700}
+footer{max-width:900px;margin:28px auto 0;padding:20px 16px;text-align:center;border-top:1px solid #ddd;color:#6c757d;font-size:13px}
+footer a{padding:4px 8px;text-decoration:none}
+@media (max-width:600px){main{margin-top:18px}.panel{padding:20px;border-radius:0}h1{font-size:24px}}

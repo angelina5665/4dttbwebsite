@@ -6,6 +6,7 @@
 <title>4D VIP - Live 4D Result Today, Toto Magnum Damacai Malaysia</title>
 <meta name="description" content="Check 4D result live. Magnum 4D, 4D Toto, Damacai 4D result, Sabah 88 Lotto 4D, Sarawak Special Cash Sweep 4D, STC 4D, Singapore Pools 4D. Keputusan Hari Ini 4D in Sabah, Sarawak, Malaysia.">
 <meta name="keywords" content="4d,result,live,damacai,magnum 4d,toto 4d,keputusan 4d">
+<link rel="canonical" href="https://4dresult1.com/">
 <style>
 /* ============ base ============ */
 *{box-sizing:border-box}
@@ -300,11 +301,11 @@ const STYLE = {
 };
 
 const LAYOUT = [
-  { title: "4D RESULT MALAYSIA", href: "malaysia-4d-result.html", bannerAfter: "afterMalaysia",
+  { id: "malaysia-results", title: "4D RESULT MALAYSIA", href: "#malaysia-results", bannerAfter: "afterMalaysia",
     items: [{ p: "gd4d" }, { p: "damacai" }, { p: "magnum" }, { p: "toto" }, { p: "totoextra" }, { p: "damacai13d" }] },
-  { title: "4D RESULT SINGAPORE", href: "singapore-4d-result.html", bannerAfter: "afterSingapore",
+  { id: "singapore-results", title: "4D RESULT SINGAPORE", href: "#singapore-results", bannerAfter: "afterSingapore",
     items: [{ p: "singapore" }, { banner: "singaporeRow" }] },
-  { title: "4D RESULT SABAH SARAWAK", href: "sarawak-4d-result.html", bannerAfter: "afterSabah",
+  { id: "sabah-sarawak-results", title: "4D RESULT SABAH SARAWAK", href: "#sabah-sarawak-results", bannerAfter: "afterSabah",
     items: [{ p: "sabah88" }, { p: "sandakan" }, { p: "cashsweep" }] }
 ];
 
@@ -459,7 +460,7 @@ function render(data) {
       const r = providers[it.p];
       return r ? cardHTML(it.p, r, data) : "";
     }).join("");
-    return '<div class="section-bar"><h2><a href="' + esc(sec.href) + '">' + esc(sec.title) + '</a></h2></div>' +
+    return '<div class="section-bar" id="' + esc(sec.id) + '"><h2><a href="' + esc(sec.href) + '">' + esc(sec.title) + '</a></h2></div>' +
       '<div class="row">' + items + '</div>' +
       (sec.bannerAfter ? bannerHTML(sec.bannerAfter) : "");
   }).join("");
