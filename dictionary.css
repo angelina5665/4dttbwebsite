@@ -1,0 +1,36 @@
+.dictionary-search{padding:15px 16px 8px}
+.dictionary-search>label{display:block;margin-bottom:6px;color:#554936;font-size:13px;font-weight:650}
+.dictionary-search-row{display:flex;gap:8px}
+.dictionary-search-row input{flex:1;min-width:0;height:46px;padding:9px 12px;border:1px solid #b9aa94;border-radius:4px;background:#fff;color:#26382f;font-size:16px}
+.dictionary-search-row button{min-width:75px;min-height:46px;padding:8px 15px;border:1px solid #3378ae;border-radius:4px;background:#3378ae;color:#fff;font-weight:700;cursor:pointer}
+.dictionary-search-row button:hover{background:#28618d}
+.dictionary-search-row #dictionary-clear{border-color:#b9aa94;background:#fff;color:#524632}
+.dictionary-search-row #dictionary-clear:hover{background:#f4efe6}
+.dictionary-filters{display:flex;flex-wrap:wrap;gap:10px 16px;padding:4px 16px 8px}
+.dictionary-filters label{display:flex;align-items:center;gap:8px;color:#554936;font-size:13px}
+.dictionary-filters select{min-height:38px;max-width:100%;padding:5px 28px 5px 9px;border:1px solid #b9aa94;border-radius:4px;background:#fff;color:#26382f;font-size:14px}
+.dictionary-results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.dictionary-result{min-width:0;overflow:hidden;border:1px solid #6d5b3b;border-radius:5px;background:#fff;box-shadow:0 4px 12px #4c3e2010}
+.dictionary-result-head{padding:10px 13px;background:#51432c;color:#fff}
+.dictionary-result-head strong{display:block;font-size:22px;letter-spacing:2px;font-variant-numeric:tabular-nums;line-height:1.25}
+.dictionary-result-head span{display:block;font-size:11px;color:#f0e5ce;margin-top:3px;line-height:1.35}
+.dictionary-image{display:flex;align-items:center;justify-content:center;min-height:174px;padding:10px;background:#faf7ee;border-bottom:1px solid #e7e0d3}
+.dictionary-image img{display:block;width:100%;max-width:200px;height:154px;object-fit:contain}
+.dictionary-image img[hidden],.dictionary-no-image[hidden]{display:none}
+.dictionary-no-image{color:#716a5d;font-size:12px;text-align:center}
+.dictionary-result-body{padding:14px 13px 12px}
+.dictionary-english{font-size:15px;font-weight:650;line-height:1.4;margin:0 0 8px;overflow-wrap:anywhere}
+.dictionary-chinese{font-size:19px;line-height:1.45;margin:0 0 12px;font-family:"Noto Serif SC","Songti SC",SimSun,serif;overflow-wrap:anywhere}
+.dictionary-subcategory{margin:0 0 10px;color:#625846;font-size:12px;line-height:1.5}
+.dictionary-source{display:flex;justify-content:space-between;align-items:center;gap:8px;padding-top:8px;border-top:1px solid #e7e0d3;color:#5a594f;font-size:11px}
+.dictionary-source a{display:inline-flex;align-items:center;min-height:36px;color:#694d2c;white-space:nowrap}
+.dictionary-source span{text-align:right}
+.dictionary-more{display:block;margin:18px auto 0;min-height:44px;padding:8px 18px;border:1px solid #51432c;border-radius:4px;background:#fff;color:#51432c;font-size:14px;font-weight:650;cursor:pointer}
+.dictionary-more:hover{background:#f6eedc}
+.dictionary-empty{padding:25px;border:1px dashed #bfae90;border-radius:5px;background:#fffefa;color:#5d513e;font-size:14px}
+.dictionary-context{margin-top:38px;padding-top:20px;border-top:1px solid #a89572}
+.dictionary-context h2{font-size:18px;margin:0 0 10px}
+.dictionary-context p{max-width:930px;margin:0 0 10px;color:#4c4d40;font-size:13px;line-height:1.8}
+.dictionary-context a{color:#6b4529}
+@media(max-width:1000px){.dictionary-results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.dictionary-results{grid-template-columns:1fr}.dictionary-search-row{flex-wrap:wrap}.dictionary-search-row input{flex-basis:100%}.dictionary-search-row button{flex:1}.dictionary-filters{display:block}.dictionary-filters label{justify-content:space-between;margin-bottom:8px}.dictionary-filters select{width:55%}}

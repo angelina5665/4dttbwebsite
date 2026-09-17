@@ -196,6 +196,7 @@ body{background:#f4f5f7}
 .chips button:hover{border-color:#d9b45b;background:#fdf6e3}
 .totop{position:fixed;right:16px;bottom:16px;z-index:300;width:44px;height:44px;border-radius:50%;border:0;background:#17181c;color:#d9b45b;font-size:20px;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .totop.show{display:block}
+.glossary-access{text-align:center;margin:4px 12px 0}.glossary-access a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 15px;border:1px solid #b8bec8;border-radius:6px;background:#fff;color:#3e5143;font-size:14px;font-weight:650;text-decoration:none}.glossary-access a:hover{border-color:#8e9e83;background:#f4f7ed}.glossary-access a:focus-visible{outline:3px solid #8d691e;outline-offset:3px}
 </style>
 </head>
 <body>
@@ -226,6 +227,7 @@ body{background:#f4f5f7}
 
 <div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" aria-label="Check your 4D number"><button type="button" id="checkbtn">Check</button></div>
 <p id="checkmsg" class="checkmsg"></p>
+<p class="glossary-access"><a href="dictionary.html">Search the number dictionary <span lang="zh-Hans">号码辞典</span> <span aria-hidden="true">→</span></a></p>
 <div class="chips" id="chips"></div>
 
 <main class="container" id="app"></main>
@@ -255,6 +257,8 @@ body{background:#f4f5f7}
   </div>
   <ul class="footnav">
     <li><a href="./">Home</a></li>
+    <li><a href="dictionary.html">Dictionary</a></li>
+    <li><a href="chinese-number-symbolism.html">Daily Chinese Symbols</a></li>
     <li><a href="slot-malaysia.html">Slot Malaysia Guide</a></li>
     <li><a href="disclaimer.html">Disclaimer</a></li>
     <li><a href="privacy.html">Privacy</a></li>
