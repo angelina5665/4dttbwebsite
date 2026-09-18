@@ -12,6 +12,7 @@ const types = {
   ".html": "text/html; charset=utf-8",
   ".jpg": "image/jpeg",
   ".json": "application/json; charset=utf-8",
+  ".mjs": "text/javascript; charset=utf-8",
   ".png": "image/png",
   ".txt": "text/plain; charset=utf-8",
   ".xml": "application/xml; charset=utf-8",
@@ -24,7 +25,7 @@ createServer((request, response) => {
   const target = resolve(root, `.${pathname}`);
   const inRoot = target === root || target.startsWith(root + sep);
   if (inRoot && existsSync(target) && statSync(target).isFile()) {
-    response.writeHead(200, { "content-type": types[extname(target)] || "application/octet-stream", "cache-control": "no-store" });
+    response.writeHead(200, { "content-type": types[extname(target)] || "application/octet-stream", "cache-control": "no-store", "x-robots-tag": "noindex, nofollow" });
     response.end(readFileSync(target));
     return;
   }

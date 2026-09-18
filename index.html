@@ -9,6 +9,10 @@
 <link rel="canonical" href="https://4dresult1.com/">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=1">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+<link rel="stylesheet" href="site-language.css">
+<link rel="stylesheet" href="promo-banner.css">
+<script type="module" src="site-language.mjs"></script>
+<script type="module" src="promo-banner.mjs"></script>
 <style>
 /* ============ base ============ */
 *{box-sizing:border-box}
@@ -205,14 +209,14 @@ body{background:#f4f5f7}
   <div class="center-container">
     <div class="box">
       <div class="dropdown" id="dateDropdown">
-        <button type="button" aria-expanded="false">Result</button>
+        <button type="button" aria-expanded="false" data-i18n="results">Search results</button>
         <ul class="dropdown-menu" id="dateMenu"></ul>
       </div>
     </div>
     <a class="brand" href="./">
       <b>4D VIP</b><span class="live">LIVE</span>
     </a>
-    <div class="box"></div>
+    <div class="box" style="justify-content:flex-end"><label class="site-language"><span data-i18n="language">Language</span><select data-language-switcher aria-label="Language"><option value="en">English</option><option value="zh">中文</option><option value="ms">Bahasa Melayu</option></select></label></div>
   </div>
 </nav>
 
@@ -223,11 +227,11 @@ body{background:#f4f5f7}
   </picture>
 </a>
 
-<div class="container"><h1 class="page-title">4D Result Malaysia</h1><p id="updated" class="updated"></p><p id="nextdraw" class="statusline"></p></div>
+<div class="container"><h1 class="page-title" data-i18n="homeTitle">4D Result Malaysia</h1><p id="updated" class="updated"></p><p id="nextdraw" class="statusline"></p></div>
 
-<div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" aria-label="Check your 4D number"><button type="button" id="checkbtn">Check</button></div>
+<div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" data-i18n-placeholder="checkPlaceholder" aria-label="Check your 4D number"><button type="button" id="checkbtn" data-i18n="check">Check</button></div>
 <p id="checkmsg" class="checkmsg"></p>
-<p class="glossary-access"><a href="dictionary.html">Search the number dictionary <span lang="zh-Hans">号码辞典</span> <span aria-hidden="true">→</span></a></p>
+<p class="glossary-access"><a href="dictionary.html"><span data-i18n="dictionaryLink">Search the number dictionary</span> <span aria-hidden="true">→</span></a> <a href="4d-history.html"><span data-i18n="historyLink">Search 4D prize history</span> <span aria-hidden="true">→</span></a></p>
 <div class="chips" id="chips"></div>
 
 <main class="container" id="app"></main>
@@ -237,32 +241,33 @@ body{background:#f4f5f7}
 <footer class="container">
   <div class="footsec">
     <h3>4D Result | 4D Toto | Magnum 4D | Damacai</h3>
-    <p>Looking for the latest <b>4D result</b> today in Malaysia? This website provides timely updates for reference purposes. Stay informed with the latest draw results from the major providers, updated in real time.</p>
+    <p data-i18n="homeFooterIntro">Looking for the latest 4D result today in Malaysia? This website provides timely updates for reference purposes. Stay informed with the latest draw results from the major providers, updated in real time.</p>
   </div>
   <div class="footsec">
-    <h3>Check 4D Live</h3>
-    <p>We show 4D result information from major providers such as Magnum 4D, Damacai and Toto, so you can easily check and compare the latest results. All draw results are updated regularly so you stay informed.</p>
+    <h3 data-i18n="homeFooterLiveTitle">Check 4D Live</h3>
+    <p data-i18n="homeFooterLive">We show 4D result information from major providers such as Magnum 4D, Damacai and Toto, so you can easily check and compare the latest results. All draw results are updated regularly so you stay informed.</p>
   </div>
   <div class="footsec">
     <h3>Keputusan 4D | 4D Toto | Magnum 4D | Damacai</h3>
-    <p>Adakah anda ingin mengetahui keputusan 4D terkini? Laman web kami menyediakan kemas kini terkini untuk rujukan sahaja. Kami memaparkan keputusan daripada pembekal utama supaya anda boleh menyemak maklumat dengan mudah.</p>
+    <p data-i18n="homeFooterMalay">Adakah anda ingin mengetahui keputusan 4D terkini? Laman web kami menyediakan kemas kini terkini untuk rujukan sahaja. Kami memaparkan keputusan daripada pembekal utama supaya anda boleh menyemak maklumat dengan mudah.</p>
   </div>
   <div class="footsec">
-    <h3>What time is the 4D result today?</h3>
-    <p>The 4D draw results are usually released in the evening (Malaysia time). Results are updated on this website shortly after release, for reference purposes only.</p>
+    <h3 data-i18n="homeFooterTimeTitle">What time is the 4D result today?</h3>
+    <p data-i18n="homeFooterTime">The 4D draw results are usually released in the evening (Malaysia time). Results are updated on this website shortly after release, for reference purposes only.</p>
   </div>
   <div class="footsec">
-    <h3>Disclaimer</h3>
-    <p>Results shown here are for reference only. Please verify with the official operators. This site is not affiliated with Magnum, Sports Toto, Da Ma Cai, Cash Sweep, Sabah 88, STC or Singapore Pools. Play responsibly &mdash; 21 and above only.</p>
+    <h3 data-i18n="disclaimer">Disclaimer</h3>
+    <p data-i18n="homeFooterDisclaimer">Results shown here are for reference only. Please verify with the official operators. This site is not affiliated with Magnum, Sports Toto, Da Ma Cai, Cash Sweep, Sabah 88, STC or Singapore Pools. Play responsibly — 21 and above only.</p>
   </div>
   <ul class="footnav">
-    <li><a href="./">Home</a></li>
-    <li><a href="dictionary.html">Dictionary</a></li>
-    <li><a href="chinese-number-symbolism.html">Daily Chinese Symbols</a></li>
+    <li><a href="./" data-i18n="home">Home</a></li>
+    <li><a href="dictionary.html" data-i18n="dictionary">Dictionary</a></li>
+    <li><a href="4d-history.html" data-i18n="history">Prize history</a></li>
+    <li><a href="chinese-number-symbolism.html" data-i18n="dailyReading">Daily Chinese Symbols</a></li>
     <li><a href="slot-malaysia.html">Slot Malaysia Guide</a></li>
-    <li><a href="disclaimer.html">Disclaimer</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="sitemap.xml">Sitemap</a></li>
+    <li><a href="disclaimer.html" data-i18n="disclaimer">Disclaimer</a></li>
+    <li><a href="privacy.html" data-i18n="privacy">Privacy</a></li>
+    <li><a href="sitemap.xml" data-i18n="sitemap">Sitemap</a></li>
   </ul>
   <div class="copyright">&copy; <span id="yr"></span> 4D VIP. All rights reserved.</div>
 </footer>
@@ -319,14 +324,16 @@ const LAYOUT = [
 
 /* ============ helpers ============ */
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const L = (key, fallback, ...args) => window.siteT ? window.siteT(key, ...args) : fallback;
+let latestRenderedData = null;
 
 /* ============ block renderers ============ */
 function blkPrizes3(b) {
   const head = b.title ? '<tr><td colspan="2" class="resultprizelable">' + esc(b.title) + '</td></tr>' : "";
   return '<table class="resultTable2"><tbody>' + head +
-    '<tr><td style="width:45%" class="resultprizelable">1st Prize 首獎</td><td class="resulttop prize1" style="width:55%">' + esc(b.first) + '</td></tr>' +
-    '<tr><td style="width:45%" class="resultprizelable">2nd Prize 二獎</td><td class="resulttop">' + esc(b.second) + '</td></tr>' +
-    '<tr><td style="width:45%" class="resultprizelable">3rd Prize 三獎</td><td class="resulttop">' + esc(b.third) + '</td></tr>' +
+    '<tr><td style="width:45%" class="resultprizelable">' + esc(L('first','1st Prize')) + '</td><td class="resulttop prize1" style="width:55%">' + esc(b.first) + '</td></tr>' +
+    '<tr><td style="width:45%" class="resultprizelable">' + esc(L('second','2nd Prize')) + '</td><td class="resulttop">' + esc(b.second) + '</td></tr>' +
+    '<tr><td style="width:45%" class="resultprizelable">' + esc(L('third','3rd Prize')) + '</td><td class="resulttop">' + esc(b.third) + '</td></tr>' +
     '</tbody></table>';
 }
 
@@ -374,7 +381,7 @@ function blkLotto(b) {
 }
 
 function blkD3(b) {
-  const labels = ["1st 首獎", "2nd 二獎", "3rd 三獎"];
+  const labels = [L('first','1st Prize'), L('second','2nd Prize'), L('third','3rd Prize')];
   const rows = b.rows.map((r, i) =>
     '<tr><td style="width:30%" class="resultprizelable">' + esc(labels[i]) + '</td>' +
     '<td class="resulttop">' + esc(r.value) + '</td>' +
@@ -405,14 +412,14 @@ function buildBlocks(key, r) {
 
   if (key === "damacai13d") {
     if (r.d3rows) out.push({ type: "d3", rows: r.d3rows });
-    if (r.special) out.push({ type: "grid", title: "Special 特別獎", cols: 3, numbers: r.special });
-    if (r.consolation) out.push({ type: "grid", title: "Consolation 安慰獎", cols: 3, numbers: r.consolation });
+    if (r.special) out.push({ type: "grid", title: L('special','Special'), cols: 3, numbers: r.special });
+    if (r.consolation) out.push({ type: "grid", title: L('consolation','Consolation'), cols: 3, numbers: r.consolation });
     return out;
   }
 
   if (r.first) out.push({ type: "prizes3", first: r.first, second: r.second, third: r.third });
-  if (r.special) out.push({ type: "grid", title: "Special 特別獎", cols: 5, numbers: r.special });
-  if (r.consolation) out.push({ type: "grid", title: "Consolation 安慰獎", cols: 5, numbers: r.consolation });
+  if (r.special) out.push({ type: "grid", title: L('special','Special'), cols: 5, numbers: r.special });
+  if (r.consolation) out.push({ type: "grid", title: L('consolation','Consolation'), cols: 5, numbers: r.consolation });
   if (r.threeD) out.push({ type: "prizes3", title: "3D", first: r.threeD.first, second: r.threeD.second, third: r.threeD.third });
   return out;
 }
@@ -451,8 +458,8 @@ function cardHTML(key, r, data) {
       '<td class="headlabel" style="background:' + st.headBg + ';color:' + st.headColor + '">' + esc(st.name) + '</td>' +
     '</tr></tbody></table>' +
     '<table class="resultTable2"><tbody><tr>' +
-      '<td class="resultdrawdate"><span class="datebtn">Date: ' + esc(date) + ' (' + esc(day) + ')</span></td>' +
-      '<td class="resultdrawdate" style="text-align:right">Draw No: ' + esc(r.drawNo || "") + '</td>' +
+      '<td class="resultdrawdate"><span class="datebtn">' + esc(L('date','Date')) + ': ' + esc(date) + ' (' + esc(day) + ')</span></td>' +
+      '<td class="resultdrawdate" style="text-align:right">' + esc(L('drawNo','Draw No')) + ': ' + esc(r.drawNo || "") + '</td>' +
     '</tr></tbody></table>' +
     blocks +
   '</div>';
@@ -460,6 +467,7 @@ function cardHTML(key, r, data) {
 
 /* ============ page ============ */
 function render(data) {
+  latestRenderedData = data;
   const providers = data.providers || {};
 
   document.getElementById("app").innerHTML = LAYOUT.map(sec => {
@@ -468,16 +476,15 @@ function render(data) {
       const r = providers[it.p];
       return r ? cardHTML(it.p, r, data) : "";
     }).join("");
-    return '<div class="section-bar" id="' + esc(sec.id) + '"><h2><a href="' + esc(sec.href) + '">' + esc(sec.title) + '</a></h2></div>' +
+    const titleKey = {'malaysia-results':'malaysiaResults','singapore-results':'singaporeResults','sabah-sarawak-results':'borneoResults'}[sec.id];
+    return '<div class="section-bar" id="' + esc(sec.id) + '"><h2><a href="' + esc(sec.href) + '">' + esc(L(titleKey,sec.title)) + '</a></h2></div>' +
       '<div class="row">' + items + '</div>' +
       (sec.bannerAfter ? bannerHTML(sec.bannerAfter) : "");
   }).join("");
 
   const stamp = document.getElementById("updated");
   if (stamp) {
-    stamp.textContent = data.drawDate
-      ? "Draw " + data.drawDate + " (" + data.drawDay + ")  ·  updated " + (data.updated || "")
-      : "";
+    stamp.textContent = data.drawDate ? L('homeUpdated', "Draw " + data.drawDate + " (" + data.drawDay + ") · updated " + (data.updated || ""), data.drawDate, data.drawDay, data.updated || '') : '';
   }
 
   renderChips(providers);
@@ -489,10 +496,11 @@ function render(data) {
 
 function showError() {
   document.getElementById("app").innerHTML =
-    '<div class="section-bar"><h2>Results are loading</h2></div>' +
+    '<div class="section-bar"><h2>' + esc(L('loadingResults','Results are loading')) + '</h2></div>' +
     '<p style="padding:24px 12px;text-align:center;color:#666">' +
-    'We could not load the latest results just now. Please refresh in a moment.</p>';
+    esc(L('resultError','We could not load the latest results just now. Please refresh in a moment.')) + '</p>';
 }
+document.addEventListener('site-language-change', () => { if (latestRenderedData) render(latestRenderedData); });
 
 function loadResults(first){
   fetch("results.json?t=" + Date.now())
@@ -550,9 +558,8 @@ function renderCountdown(){
   if (!el) return;
   const info = nextDrawInfo();
   if (!info) { el.innerHTML = ""; return; }
-  el.innerHTML = info.live
-    ? '<span class="livepulse"></span><b>Draw in progress</b> — results appear here as they are announced'
-    : 'Next draw: <b>' + info.day + ' 7:00pm</b> — in ' + info.left;
+  el.textContent = info.live ? L('drawInProgress','Draw in progress — results appear here as they are announced')
+    : L('nextDraw','Next draw: ' + info.day + ' 7:00pm — in ' + info.left, info.day, info.left);
 }
 setInterval(renderCountdown, 30000);
 
@@ -593,12 +600,12 @@ function runCheck(){
     }
   });
   if (hits.length) {
-    msg.textContent = "🎉 " + num + " found in: " + hits.join(", ");
+    msg.textContent = L('foundIn',"🎉 " + num + " found in: " + hits.join(", "),num,hits.join(', '));
     msg.className = "checkmsg win";
     const first = document.querySelector(".hit");
     if (first) first.scrollIntoView({ behavior: "smooth", block: "center" });
   } else {
-    msg.textContent = num + " — not in this draw's results";
+    msg.textContent = L('notInDraw',num + " — not in this draw's results",num);
     msg.className = "checkmsg lose";
   }
 }

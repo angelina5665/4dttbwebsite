@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>4D Results History | Search Past Four-Digit Results | 4D VIP</title>
+  <meta name="description" content="Search recorded 4D first-prize results by exact number, draw date and provider. Distinguish ordinary first prizes from separate Jackpot products.">
+  <meta name="robots" content="index,follow">
+  <link rel="canonical" href="https://4dresult1.com/4d-history.html">
+  <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=1">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+  <link rel="stylesheet" href="legal.css">
+  <link rel="stylesheet" href="history.css">
+  <link rel="stylesheet" href="site-language.css">
+  <link rel="stylesheet" href="promo-banner.css">
+  <script type="module" src="site-language.mjs"></script>
+  <script type="module" src="promo-banner.mjs"></script>
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="4D Results History | 4D VIP">
+  <meta property="og:description" content="A dated reference archive. Search recorded four-digit results by number, date and provider.">
+  <meta property="og:url" content="https://4dresult1.com/4d-history.html">
+  <script type="application/ld+json">
+  {"@context":"https://schema.org","@type":"CollectionPage","name":"4D Results History","url":"https://4dresult1.com/4d-history.html","inLanguage":"en","description":"A limited archive of recorded four-digit results with dated source records, not number predictions.","breadcrumb":{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"4D Results","item":"https://4dresult1.com/"},{"@type":"ListItem","position":2,"name":"Results History","item":"https://4dresult1.com/4d-history.html"}]}}
+  </script>
+  <script type="module" src="history.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to result history</a>
+  <nav class="navbar" aria-label="Main navigation"><div class="navinner history-nav"><a class="brand" href="./" aria-label="4D VIP homepage"><b>4D VIP</b><span class="live">LIVE</span></a><a class="back-link" href="./"><span data-i18n="home">Home</span> <span aria-hidden="true">↗</span></a><label class="site-language"><span data-i18n="language">Language</span><select data-language-switcher aria-label="Language"><option value="en">English</option><option value="zh">中文</option><option value="ms">Bahasa Melayu</option></select></label></div></nav>
+  <main id="main" class="history-main">
+    <header class="history-intro">
+      <p class="eyebrow"><span data-i18n="historyEyebrow">THE RESULT ARCHIVE</span> <span lang="zh-Hans">历史开奖记录</span></p>
+      <h1 data-i18n="historyTitle">Look back. Find the recorded result.</h1>
+      <p class="intro-copy" data-i18n="historyIntro">Search past four-digit results by number, draw date or provider. First-prize draws and Jackpot grand-prize products are distinct. Every recorded number keeps its leading zeros.</p>
+      <div class="coverage-strip"><span class="coverage-label" data-i18n="availableArchive">Available archive</span><strong id="coverage">Loading recorded dates…</strong><a href="#about-archive" data-i18n="aboutRecords">About these records</a></div>
+    </header>
+
+    <section class="search-panel" aria-labelledby="search-title">
+      <div class="section-heading"><h2 id="search-title" data-i18n="historySearch">Search 4D history</h2><span lang="zh-Hans">查询四位数历史记录</span></div>
+      <form id="history-search" novalidate>
+        <fieldset id="search-fields" disabled>
+          <legend class="sr-only">Filter the recorded results</legend>
+          <div class="filter-grid">
+            <div class="number-field"><label for="history-number"><span data-i18n="fourDigitNumber">Four-digit number</span> <span data-i18n="optional">(optional)</span></label><input id="history-number" name="number" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" maxlength="32" placeholder="e.g. 0038" aria-describedby="number-help filter-error"><p id="number-help" data-i18n="exactFour">Exactly four digits, including any leading zero.</p></div>
+            <div><label for="history-date" data-i18n="drawDate">Draw date</label><input id="history-date" name="date" type="date"></div>
+            <div><label for="history-provider" data-i18n="provider">Provider</label><select id="history-provider" name="provider"><option value="" data-i18n="allProviders">All providers</option></select></div>
+            <div><label for="history-prize-type" data-i18n="prizeType">Prize type</label><select id="history-prize-type" name="prize"><option value="first" data-i18n="standardFirst">Standard 4D · 1st prize</option><option value="all" data-i18n="standardAll">All standard 4D tiers</option><option value="jackpot" data-i18n="jackpotLookup">Jackpot grand prize · official lookup</option></select></div>
+          </div>
+          <div class="form-actions"><button class="primary-button" type="submit"><span data-i18n="searchArchive">Search archive</span> <span aria-hidden="true">→</span></button><button class="reset-button" type="reset" data-i18n="clearFilters">Clear filters</button><span class="reference-tag" data-i18n="recordedOnly">Recorded results only</span></div>
+        </fieldset>
+        <p id="filter-error" class="error-message" role="alert" hidden></p>
+      </form>
+      <noscript><p class="no-script">Turn on JavaScript to search this archive. You can also <a href="history-data.json">read the archived records</a> or <a href="./">return to the latest results</a>.</p></noscript>
+    </section>
+
+    <section class="archive-results" aria-labelledby="results-title">
+      <div class="results-heading"><h2 id="results-title" data-i18n="recordedDraws">Recorded draws</h2><span data-i18n="newestFirst">Newest date first</span></div>
+      <p id="results-summary" class="results-summary" role="status" aria-live="polite" aria-atomic="true">Loading archive…</p>
+      <div id="load-error" class="empty-state" role="alert" hidden><h3>The archive could not be loaded.</h3><p>Your search has not run. Please try again; no missing result will be replaced with a made-up number.</p><button id="retry-load" class="primary-button" type="button">Try again</button></div>
+      <div id="empty-state" class="empty-state" hidden><h3>No matching archived record.</h3><p>This is a limited archive. No match here does not mean the number has never appeared. Try another recorded date or clear the filters.</p></div>
+      <div class="jackpot-source-note"><strong data-i18n="jackpotSeparate">Jackpot grand-prize history is a separate lookup.</strong> <span data-i18n="jackpotSourceStart">A standard 4D first-prize number alone does not establish that a jackpot ticket won. Verify Jackpot products using</span> <a href="https://www.sportstoto.com.my/results_past.asp" target="_blank" rel="noopener noreferrer">Sports Toto</a>, <a href="https://www.magnum4d.my/results/winning-history" target="_blank" rel="noopener noreferrer">Magnum</a>, <span data-i18n="or">or</span> <a href="https://damacai.com.my/past-draw-result" target="_blank" rel="noopener noreferrer">Da Ma Cai</a>. <span data-i18n="jackpotSourceEnd">We do not have a verified, searchable jackpot-winner dataset, so this filter never reports an unsupported “never won.”</span></div>
+      <div id="draw-list" class="draw-grid"></div>
+      <div class="pagination"><button id="load-more" class="more-button" type="button" hidden>Show more recorded draws</button></div>
+    </section>
+
+    <aside id="about-archive" class="archive-note" aria-labelledby="about-title">
+      <span class="note-mark" aria-hidden="true">i</span><div><h2 id="about-title" data-i18n="referenceNotPrediction">A reference, not a prediction.</h2><p><span data-i18n="archiveNoteStart">This dated archive covers Magnum, Sports Toto and Da Ma Cai draws published in the</span> <a href="https://github.com/deadboy18/malaysia-4d" target="_blank" rel="noopener noreferrer">MIT-licensed malaysia-4d dataset</a> <span data-i18n="archiveNoteMiddle">through 16 September 2026. Records are attributed to its pinned source commit; see the</span> <a href="malaysia-4d-LICENSE.txt" data-i18n="mitNotice">MIT licence and copyright notice</a>. <span data-i18n="archiveNoteEnd">It is not an official or complete all-time operator history; verify individual results with the operator.</span></p><p data-i18n="archiveLimits">Only standard four-digit result fields are included. Jackpot grand-prize tickets, claims and payout amounts are not inferred from them. No match here does not mean a number never won. Past results do not improve the odds of a future result.</p><p><span data-i18n="the">The</span> <a href="./" data-i18n="latestResultsPage">latest-results page</a> <span data-i18n="archiveLatest">may be newer than this dated archive. 4D VIP is an independent reference site, not an official operator.</span></p></div>
+    </aside>
+  </main>
+  <footer class="history-footer"><a href="./" data-i18n="latestResults">Latest results</a><a href="4d-history.html" aria-current="page" data-i18n="history">Prize history</a><a href="slot-malaysia.html">Slot Malaysia guide</a><a href="disclaimer.html" data-i18n="disclaimer">Disclaimer</a><a href="privacy.html" data-i18n="privacy">Privacy</a><p data-i18n="historicalOnly">4D VIP · Historical information only</p></footer>
+</body>
+</html>

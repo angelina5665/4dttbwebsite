@@ -10,48 +10,54 @@
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
 <link rel="stylesheet" href="glossary.css">
 <link rel="stylesheet" href="dictionary.css">
+<link rel="stylesheet" href="site-language.css">
+<link rel="stylesheet" href="promo-banner.css">
+<script type="module" src="site-language.mjs"></script>
+<script type="module" src="promo-banner.mjs"></script>
 <script type="module" src="dictionary.mjs"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="header-inner">
   <a class="brand" href="./" aria-label="4D VIP home">4D VIP</a>
-  <a class="return-link" href="./"><span aria-hidden="true">←</span> Back to results</a>
+  <a class="return-link" href="./"><span aria-hidden="true">←</span> <span data-i18n="home">Home</span></a>
+  <label class="site-language"><span data-i18n="language">Language</span><select data-language-switcher aria-label="Language"><option value="en">English</option><option value="zh">中文</option><option value="ms">Bahasa Melayu</option></select></label>
 </div></header>
 <main id="main">
   <section class="intro" aria-labelledby="page-title">
-    <div><p class="eyebrow">BILINGUAL SEARCH</p><h1 id="page-title">Dictionary <span class="intro-zh" lang="zh-Hans">号码辞典</span></h1></div>
-    <p class="intro-copy">Find a published entry by its three- or four-digit number, English name, or Chinese name. The source’s Dream, Zodiac, and Festive entries are shown as reference material, not predictions.</p>
+    <div><p class="eyebrow" data-i18n="dictionaryEyebrow">BILINGUAL SEARCH</p><h1 id="page-title"><span data-i18n="dictionary">Dictionary</span> <span class="intro-zh" lang="zh-Hans">号码辞典</span></h1></div>
+    <p class="intro-copy" data-i18n="dictionaryIntro">Find a published entry by its three- or four-digit number, English name, or Chinese name. The source’s Dream, Zodiac, and Festive entries are shown as reference material, not predictions.</p>
   </section>
   <section class="lookup-wrap" aria-labelledby="search-title">
-    <h2 id="search-title">Search the dictionary <span lang="zh-Hans">搜索号码或名称</span></h2>
+    <h2 id="search-title"><span data-i18n="dictionarySearch">Search the dictionary</span> <span lang="zh-Hans">搜索号码或名称</span></h2>
     <form id="dictionary-search" class="dictionary-search" role="search">
-      <label for="dictionary-query">Number or name</label>
+      <label for="dictionary-query" data-i18n="numberOrName">Number or name</label>
       <div class="dictionary-search-row">
         <input id="dictionary-query" name="q" type="search" placeholder="Try 1222, snake, or 蛇" autocomplete="off" maxlength="100" aria-controls="dictionary-results" aria-describedby="dictionary-status">
-        <button type="submit">Search</button><button id="dictionary-clear" type="reset">Clear</button>
+        <button type="submit" data-i18n="search">Search</button><button id="dictionary-clear" type="reset" data-i18n="clear">Clear</button>
       </div>
     </form>
     <div class="dictionary-filters">
-      <label for="dictionary-category">Category <select id="dictionary-category"><option value="all">All categories</option><option value="Dream Numbers">Dream Numbers</option><option value="Zodiac Numbers">Zodiac Numbers</option><option value="Festive Numbers">Festive Numbers</option></select></label>
-      <label for="dictionary-length">Number length <select id="dictionary-length"><option value="all">3D and 4D</option><option value="3">3D only</option><option value="4">4D only</option></select></label>
+      <label for="dictionary-category"><span data-i18n="category">Category</span> <select id="dictionary-category"><option value="all" data-i18n="allCategories">All categories</option><option value="Dream Numbers" data-i18n="dream">Dream Numbers</option><option value="Zodiac Numbers" data-i18n="zodiac">Zodiac Numbers</option><option value="Festive Numbers" data-i18n="festive">Festive Numbers</option></select></label>
+      <label for="dictionary-length"><span data-i18n="numberLength">Number length</span> <select id="dictionary-length"><option value="all" data-i18n="bothLengths">3D and 4D</option><option value="3" data-i18n="threeOnly">3D only</option><option value="4" data-i18n="fourOnly">4D only</option></select></label>
     </div>
-    <p class="lookup-hint">Numbers are stored as text, so leading zeros remain intact. A complete three- or four-digit search matches that exact code; shorter numeric searches find codes that start with those digits.</p>
+    <p class="lookup-hint" data-i18n="dictionaryHint">Numbers are stored as text, so leading zeros remain intact. A complete three- or four-digit search matches that exact code; shorter numeric searches find codes that start with those digits.</p>
   </section>
   <section aria-labelledby="results-title">
-    <div class="browse-heading"><div><h2 id="results-title">Search results</h2><p>Source pictures where available, English and Chinese labels, category and source context.</p></div></div>
+    <div class="browse-heading"><div><h2 id="results-title" data-i18n="results">Search results</h2><p data-i18n="dictionarySub">Source pictures where available, English and Chinese labels, category and source context.</p></div></div>
     <p id="dictionary-status" class="search-status" role="status" aria-live="polite">Loading the dictionary…</p>
     <div id="dictionary-results" class="dictionary-results"></div>
-    <button id="dictionary-more" class="dictionary-more" type="button" hidden>Show more results</button>
+    <button id="dictionary-more" class="dictionary-more" type="button" hidden data-i18n="showMore">Show more results</button>
+    <p><a id="history-lookup-link" href="4d-history.html" data-i18n="historyLink">Search 4D prize history</a></p>
   </section>
   <section class="dictionary-context" aria-labelledby="context-title">
-    <h2 id="context-title">About these entries</h2>
-    <p>This is a dated snapshot of <a href="https://www.damacai.com.my/numbers-dictionary" target="_blank" rel="noopener noreferrer">Da Ma Cai’s public Numbers Dictionary</a>, exported on 17 September 2026. It contains bilingual Dream Numbers plus the English and Chinese Zodiac and Festive pages. Dream and Zodiac result pictures load from Da Ma Cai’s published image URLs; Festive entries have no corresponding source pictures. Some source-language pages disagree on zodiac codes; the results identify whether a code appeared on the English page, Chinese page, or both. 4D VIP is not affiliated with Da Ma Cai.</p>
-    <p>Dictionary associations are entertainment, not a recommendation or a way to improve the chance of winning. <a href="https://www.damacai.com.my/disclaimer/" target="_blank" rel="noopener noreferrer">Read the source’s disclaimer</a>. Searches and filters run in your browser after the static data file loads; the terms you type are not submitted as a search request. Pictured results request their images from the source hosts; see our <a href="privacy.html">privacy notice</a>.</p>
-    <p>Want a separate, museum-sourced cultural reading? Visit the <a href="chinese-number-symbolism.html">daily Chinese symbol glossary</a>.</p>
+    <h2 id="context-title" data-i18n="aboutEntries">About these entries</h2>
+    <p><span data-i18n="dictionaryContextStart">This is a dated snapshot of</span> <a href="https://www.damacai.com.my/numbers-dictionary" target="_blank" rel="noopener noreferrer">Da Ma Cai’s public Numbers Dictionary</a><span data-i18n="dictionaryContextEnd">, exported on 17 September 2026. It contains bilingual Dream Numbers plus the English and Chinese Zodiac and Festive pages. Dream and Zodiac result pictures load from Da Ma Cai’s published image URLs; Festive entries have no corresponding source pictures. Some source-language pages disagree on zodiac codes; the results identify whether a code appeared on the English page, Chinese page, or both. 4D VIP is not affiliated with Da Ma Cai.</span></p>
+    <p><span data-i18n="dictionaryCaution">Dictionary associations are entertainment, not a recommendation or a way to improve the chance of winning.</span> <a href="https://www.damacai.com.my/disclaimer/" target="_blank" rel="noopener noreferrer" data-i18n="sourceDisclaimer">Read the source’s disclaimer</a>. <span data-i18n="dictionaryPrivacy">Searches and filters run in your browser after the static data file loads; the terms you type are not submitted as a search request. Pictured results request their images from the source hosts; see our</span> <a href="privacy.html" data-i18n="privacyNotice">privacy notice</a>.</p>
+    <p><span data-i18n="dictionaryGlossaryIntro">Want a separate, museum-sourced cultural reading? Visit the</span> <a href="chinese-number-symbolism.html" data-i18n="dailyGlossary">daily Chinese symbol glossary</a>.</p>
   </section>
   <noscript><p class="no-script">JavaScript is required to search this dictionary. The daily cultural glossary remains readable without JavaScript.</p></noscript>
 </main>
-<footer><p>4D VIP · Dictionary</p><nav class="footer-links" aria-label="Footer"><a href="./">Home</a><a href="chinese-number-symbolism.html">Daily cultural reading</a><a href="privacy.html">Privacy</a><a href="disclaimer.html">Disclaimer</a></nav></footer>
+<footer><p data-i18n="dictionaryFooter">4D VIP · Dictionary</p><nav class="footer-links" aria-label="Footer"><a href="./" data-i18n="home">Home</a><a href="4d-history.html" data-i18n="history">Prize history</a><a href="chinese-number-symbolism.html" data-i18n="dailyReading">Daily cultural reading</a><a href="privacy.html" data-i18n="privacy">Privacy</a><a href="disclaimer.html" data-i18n="disclaimer">Disclaimer</a></nav></footer>
 </body>
 </html>

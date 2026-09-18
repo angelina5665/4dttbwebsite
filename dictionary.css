@@ -34,3 +34,4 @@
 .dictionary-context a{color:#6b4529}
 @media(max-width:1000px){.dictionary-results{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:600px){.dictionary-results{grid-template-columns:1fr}.dictionary-search-row{flex-wrap:wrap}.dictionary-search-row input{flex-basis:100%}.dictionary-search-row button{flex:1}.dictionary-filters{display:block}.dictionary-filters label{justify-content:space-between;margin-bottom:8px}.dictionary-filters select{width:55%}}
+@media(max-width:600px){.site-header .return-link{display:none}.site-header .header-inner{gap:8px}}

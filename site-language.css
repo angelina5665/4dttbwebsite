@@ -1,0 +1,4 @@
+.site-language{display:inline-flex;align-items:center;gap:7px;font-size:13px;font-weight:700;color:inherit;white-space:nowrap}
+.site-language select{min-height:38px;padding:6px 28px 6px 9px;border:1px solid #aab0b8;border-radius:5px;background:#fff;color:#17181c;font:inherit;cursor:pointer}
+.site-language select:focus-visible{outline:3px solid #d59c20;outline-offset:2px}
+@media(max-width:480px){.site-language{font-size:12px;gap:4px}.site-language select{min-height:36px;padding-left:6px;padding-right:18px}}

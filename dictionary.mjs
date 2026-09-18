@@ -1,3 +1,4 @@
+import {t} from './site-language.mjs';
 const DATA_URL = 'dictionary-data.json';
 const PAGE_SIZE = 48;
 const DREAM_IMAGE_BASE = 'https://prddmccms1.blob.core.windows.net/number-dictionary/';
@@ -54,7 +55,7 @@ export function searchEntries(entries, rawQuery, category = 'all', length = 'all
 }
 
 function sourceLabel(language) {
-  return ({'bilingual feed': 'Bilingual feed', both: 'Both language pages', en: 'English page only', zh: 'Chinese page only'})[language] || 'Source entry';
+  return ({'bilingual feed': t('bilingualFeed'), both: t('bothPages'), en: t('englishOnly'), zh: t('chineseOnly')})[language] || t('sourceEntry');
 }
 
 function safeSourceUrl(value) {
@@ -74,7 +75,8 @@ function el(tag, className, value) {
 function card(entry) {
   const article = el('article', 'dictionary-result');
   const head = el('div', 'dictionary-result-head');
-  head.append(el('strong', '', entry.number), el('span', '', entry.category + (entry.number.length === 3 ? ' · 3D' : ' · 4D')));
+  const categoryKey = {'Dream Numbers':'dream','Zodiac Numbers':'zodiac','Festive Numbers':'festive'}[entry.category];
+  head.append(el('strong', '', entry.number), el('span', '', (categoryKey ? t(categoryKey) : entry.category) + (entry.number.length === 3 ? ' · 3D' : ' · 4D')));
   const imageBox = el('div', 'dictionary-image');
   const imageUrl = imageUrlForEntry(entry);
   if (imageUrl) {
@@ -86,12 +88,12 @@ function card(entry) {
     image.referrerPolicy = 'no-referrer';
     image.width = 290;
     image.height = 288;
-    const unavailable = el('span', 'dictionary-no-image', 'Source picture unavailable');
+    const unavailable = el('span', 'dictionary-no-image', t('sourceMissing'));
     unavailable.hidden = true;
     image.addEventListener('error', () => { image.hidden = true; unavailable.hidden = false; }, {once: true});
     imageBox.append(image, unavailable);
   } else {
-    imageBox.append(el('span', 'dictionary-no-image', 'No picture for this source entry'));
+    imageBox.append(el('span', 'dictionary-no-image', t('noPicture')));
   }
   const body = el('div', 'dictionary-result-body');
   body.append(el('h3', 'dictionary-english', entry.english));
@@ -105,7 +107,7 @@ function card(entry) {
   const source = el('div', 'dictionary-source');
   const url = safeSourceUrl(entry.source_url);
   if (url) {
-    const link = el('a', '', 'Da Ma Cai source ↗');
+    const link = el('a', '', t('source'));
     link.href = url;
     link.target = '_blank';
     link.rel = 'noopener noreferrer';
@@ -133,6 +135,7 @@ function start() {
   const status = document.getElementById('dictionary-status');
   const results = document.getElementById('dictionary-results');
   const more = document.getElementById('dictionary-more');
+  const historyLink = document.getElementById('history-lookup-link');
   let entries = [];
   let matches = [];
   let shown = 0;
@@ -145,7 +148,7 @@ function start() {
     results.append(fragment);
     shown = end;
     more.hidden = shown >= matches.length;
-    if (matches.length) status.textContent = `Showing ${shown} of ${matches.length.toLocaleString()} matching entries.`;
+    if (matches.length) status.textContent = t('dictionaryShowing', shown, matches.length);
   }
 
   function search() {
@@ -153,15 +156,16 @@ function start() {
     results.replaceChildren();
     more.hidden = true;
     shown = 0;
+    if (historyLink) historyLink.href = /^\d{4}$/.test(normalizeTerm(query.value)) ? `4d-history.html?number=${encodeURIComponent(normalizeTerm(query.value))}` : '4d-history.html';
     if (!entries.length) return;
     matches = searchEntries(entries, query.value, category.value, length.value);
     if (!normalizeTerm(query.value)) {
-      status.textContent = `Ready to search ${entries.length.toLocaleString()} entries. Enter a number or a name.`;
+      status.textContent = t('dictionaryReady', entries.length);
       return;
     }
     if (!matches.length) {
-      status.textContent = 'No matching entries. Try another number or name, or change the filters.';
-      results.append(el('p', 'dictionary-empty', 'No results found. Complete 3D and 4D codes match exactly; short number queries match code prefixes.'));
+      status.textContent = t('dictionaryNoMatch');
+      results.append(el('p', 'dictionary-empty', t('dictionaryEmpty')));
       return;
     }
     showNext();
@@ -173,6 +177,7 @@ function start() {
   category.addEventListener('change', search);
   length.addEventListener('change', search);
   more.addEventListener('click', showNext);
+  document.addEventListener('site-language-change', search);
 
   fetch(DATA_URL, {credentials: 'same-origin'}).then(response => {
     if (!response.ok) throw new Error('Data file unavailable');
@@ -182,7 +187,7 @@ function start() {
     entries = payload;
     search();
   }).catch(() => {
-    status.textContent = 'The dictionary could not be loaded. Please reload the page later.';
+    status.textContent = t('dictionaryLoadError');
   });
 }
 
