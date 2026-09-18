@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="promo-banner.css">
 <script type="module" src="site-language.mjs"></script>
 <script type="module" src="promo-banner.mjs"></script>
+<script type="module" src="sponsor-tab.mjs"></script>
 <style>
 /* ============ base ============ */
 *{box-sizing:border-box}
@@ -200,7 +201,7 @@ body{background:#f4f5f7}
 .chips button:hover{border-color:#d9b45b;background:#fdf6e3}
 .totop{position:fixed;right:16px;bottom:16px;z-index:300;width:44px;height:44px;border-radius:50%;border:0;background:#17181c;color:#d9b45b;font-size:20px;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .totop.show{display:block}
-.glossary-access{text-align:center;margin:4px 12px 0}.glossary-access a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 15px;border:1px solid #b8bec8;border-radius:6px;background:#fff;color:#3e5143;font-size:14px;font-weight:650;text-decoration:none}.glossary-access a:hover{border-color:#8e9e83;background:#f4f7ed}.glossary-access a:focus-visible{outline:3px solid #8d691e;outline-offset:3px}
+.glossary-access{text-align:center;margin:4px 12px 0}.glossary-access a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 15px;border:1px solid #b8bec8;border-radius:6px;background:#fff;color:#3e5143;font-size:14px;font-weight:650;text-decoration:none}.glossary-access a:hover{border-color:#8e9e83;background:#f4f7ed}.glossary-access a:focus-visible{outline:3px solid #8d691e;outline-offset:3px}.sponsor-tab-notice{display:block;margin:4px 12px 0;text-align:center;color:#5c626a;font-size:12px}
 </style>
 </head>
 <body>
@@ -231,7 +232,8 @@ body{background:#f4f5f7}
 
 <div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" data-i18n-placeholder="checkPlaceholder" aria-label="Check your 4D number"><button type="button" id="checkbtn" data-i18n="check">Check</button></div>
 <p id="checkmsg" class="checkmsg"></p>
-<p class="glossary-access"><a href="dictionary.html"><span data-i18n="dictionaryLink">Search the number dictionary</span> <span aria-hidden="true">→</span></a> <a href="4d-history.html"><span data-i18n="historyLink">Search 4D prize history</span> <span aria-hidden="true">→</span></a></p>
+<p class="glossary-access"><a href="dictionary.html" data-sponsored-tab-trigger aria-describedby="sponsor-tab-notice"><span data-i18n="dictionaryLink">Search the number dictionary</span> <span aria-hidden="true">→</span></a> <a href="4d-history.html"><span data-i18n="historyLink">Search 4D prize history</span> <span aria-hidden="true">→</span></a></p>
+<small class="sponsor-tab-notice" id="sponsor-tab-notice" data-i18n="sponsorTabNotice">The Dictionary link may also open a sponsored tab (25% chance, at most once per tab session).</small>
 <div class="chips" id="chips"></div>
 
 <main class="container" id="app"></main>
