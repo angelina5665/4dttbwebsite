@@ -691,6 +691,59 @@ function applyLiveFeed(feed){
       changed = true;
     }
   });
+
+  const T = (feed.west || {}).T;
+  const tx = __data.providers.totoextra;
+  if (T && tx && T.P5D1) {
+    const fdT = feedDate(T.DD);
+    if (fdT && dateRank(fdT.date) >= dateRank(tx.drawDate)) {
+      const strip = function(v){ return String(v || "").replace(/^RM\s*/, ""); };
+      const nextT = {
+        drawDate: fdT.date, drawDay: fdT.day, drawNo: normDrawNo(T.DN),
+        fiveD: [T.P5D1, T.P5D4, T.P5D2, T.P5D5, T.P5D3, T.P5D6].map(String),
+        sixD: [T.P6D1, T.P6D2A, T.P6D2B, T.P6D3A, T.P6D3B, T.P6D4A, T.P6D4B, T.P6D5A, T.P6D5B].map(String),
+        lotto: [
+          { title: "Star Toto 6/50", balls: [T.P6501, T.P6502, T.P6503, T.P6504, T.P6505, T.P6506].map(String),
+            bonus: String(T.P650EX || ""), jackpots: [["Jackpot 1", strip(T.P650JP1)], ["Jackpot 2", strip(T.P650JP2)]] },
+          { title: "Power Toto 6/55", balls: [T.P6551, T.P6552, T.P6553, T.P6554, T.P6555, T.P6556].map(String),
+            jackpots: [["Jackpot", strip(T.P655JP)]] },
+          { title: "Supreme Toto 6/58", balls: [T.P6581, T.P6582, T.P6583, T.P6584, T.P6585, T.P6586].map(String),
+            jackpots: [["Jackpot", strip(T.P658JP)]] }
+        ]
+      };
+      if (JSON.stringify([tx.fiveD, tx.sixD, tx.lotto, tx.drawDate]) !==
+          JSON.stringify([nextT.fiveD, nextT.sixD, nextT.lotto, nextT.drawDate])) {
+        Object.assign(tx, nextT);
+        changed = true;
+      }
+    }
+  }
+
+  const D6 = (feed.west || {}).D6;
+  const dm = __data.providers.damacai13d;
+  if (D6 && dm && D6.P1) {
+    const fdD = feedDate(D6.DD);
+    if (fdD && dateRank(fdD.date) >= dateRank(dm.drawDate)) {
+      const pad3 = function(arr){
+        return arr.length === 10 ? arr.slice(0, 9).concat([""], [arr[9]], [""]) : arr;
+      };
+      const nextD = {
+        drawDate: fdD.date, drawDay: fdD.day, drawNo: normDrawNo(D6.DN),
+        d3rows: [1, 2, 3].map(function(i){
+          return { value: grp(D6["P" + i]), zodiac: String(D6["PB" + i] || ""),
+                   bonus: String(D6["JP" + i] || "") };
+        }),
+        special: pad3(feedNums(D6, "S", 10).map(grp)),
+        consolation: pad3(feedNums(D6, "C", 10).map(grp))
+      };
+      if (JSON.stringify([dm.d3rows, dm.special, dm.consolation, dm.drawDate]) !==
+          JSON.stringify([nextD.d3rows, nextD.special, nextD.consolation, nextD.drawDate])) {
+        Object.assign(dm, nextD);
+        changed = true;
+      }
+    }
+  }
+
   if (changed) {
     let best = null;
     Object.keys(__data.providers).forEach(function(k){
