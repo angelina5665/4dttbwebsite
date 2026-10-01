@@ -194,6 +194,26 @@ body{background:#f4f5f7}
 .chips button:hover{border-color:#d9b45b;background:#fdf6e3}
 .totop{position:fixed;right:16px;bottom:16px;z-index:300;width:44px;height:44px;border-radius:50%;border:0;background:#17181c;color:#d9b45b;font-size:20px;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .totop.show{display:block}
+
+/* ============ top slider ============ */
+.tswrap{max-width:1320px;margin:14px auto 0;padding:0 12px}
+.topslider{position:relative;overflow:hidden;border-radius:4px;aspect-ratio:3/1;background:#111}
+.ts-track{display:flex;height:100%;transition:transform .5s ease}
+.ts-slide{flex:0 0 100%;height:100%;display:block}
+.ts-slide img{width:100%;height:100%;object-fit:cover;display:block}
+.ts-arrow{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;
+  border:0;background:rgba(0,0,0,.45);color:#fff;font-size:22px;line-height:1;cursor:pointer;z-index:2}
+.ts-arrow:hover{background:rgba(0,0,0,.7)}
+.ts-prev{left:10px}.ts-next{right:10px}
+.ts-dots{position:absolute;bottom:8px;left:0;right:0;display:flex;justify-content:center;gap:7px;z-index:2}
+.ts-dots button{width:9px;height:9px;border-radius:5px;border:0;padding:0;background:rgba(255,255,255,.55);cursor:pointer;transition:width .2s}
+.ts-dots button.on{background:#fff;width:22px}
+.ts-tag{position:absolute;top:6px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:10.5px;padding:1px 6px;border-radius:3px;z-index:2}
+@media (max-width:767px){
+  .tswrap{padding:0;margin-top:0}
+  .topslider{aspect-ratio:2/1;border-radius:0}
+  .ts-arrow{display:none}
+}
 </style>
 </head>
 <body>
@@ -213,12 +233,60 @@ body{background:#f4f5f7}
   </div>
 </nav>
 
-<a class="topbanner" href="https://ttbet.fun/RFAA9570A03" target="_blank" rel="noopener sponsored">
-  <picture>
-    <source media="(max-width:767px)" srcset="ttb-mobile.jpg">
-    <img src="ttb.jpg" width="1600" height="533" alt="TTBet — Spin sekarang, menang besar. Main sekarang.">
-  </picture>
-</a>
+<div class="tswrap">
+  <div class="topslider" id="topslider">
+    <span class="ts-tag">Ad</span>
+    <div class="ts-track">
+    <a class="ts-slide" href="https://ttbet.fun/RFAA9570A03" target="_blank" rel="noopener sponsored"><picture><source media="(max-width:767px)" srcset="ttb-mobile.jpg"><img src="ttb.jpg" alt="TTBet — Spin sekarang, menang besar. Main sekarang."></picture></a>
+    <a class="ts-slide" href="https://2bvbx.com/RFMY4D.BVBX" target="_blank" rel="noopener sponsored"><picture><source media="(max-width:767px)" srcset="bvbx-mobile.jpg?v=1"><img src="bvbx-wide.jpg?v=1" alt="BVBX — Step into the game. BVBX.NET"></picture></a>
+    </div>
+    <button type="button" class="ts-arrow ts-prev" aria-label="Previous">&#8249;</button>
+    <button type="button" class="ts-arrow ts-next" aria-label="Next">&#8250;</button>
+    <div class="ts-dots"></div>
+  </div>
+</div>
+<script>
+(function(){
+  var box = document.getElementById("topslider");
+  if (!box) return;
+  var track = box.querySelector(".ts-track");
+  var n = track.children.length;
+  var dots = box.querySelector(".ts-dots");
+  var i = 0, timer = null, paused = false;
+  if (n < 2) { box.querySelectorAll(".ts-arrow,.ts-dots").forEach(function(e){ e.style.display = "none"; }); return; }
+  for (var k = 0; k < n; k++) {
+    (function(k){
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Slide " + (k + 1));
+      b.addEventListener("click", function(){ go(k); restart(); });
+      dots.appendChild(b);
+    })(k);
+  }
+  function go(k){
+    i = (k + n) % n;
+    track.style.transform = "translateX(-" + (i * 100) + "%)";
+    Array.prototype.forEach.call(dots.children, function(d, j){ d.classList.toggle("on", j === i); });
+  }
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(function(){ if (!paused && !document.hidden) go(i + 1); }, 4000);
+  }
+  box.querySelector(".ts-prev").addEventListener("click", function(){ go(i - 1); restart(); });
+  box.querySelector(".ts-next").addEventListener("click", function(){ go(i + 1); restart(); });
+  box.addEventListener("mouseenter", function(){ paused = true; });
+  box.addEventListener("mouseleave", function(){ paused = false; });
+  var x0 = null;
+  track.addEventListener("touchstart", function(e){ x0 = e.touches[0].clientX; }, { passive: true });
+  track.addEventListener("touchend", function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { go(i + (dx < 0 ? 1 : -1)); restart(); }
+    x0 = null;
+  });
+  go(0); restart();
+})();
+</script>
 
 <div class="container"><p id="updated" class="updated"></p><p id="nextdraw" class="statusline"></p></div>
 
