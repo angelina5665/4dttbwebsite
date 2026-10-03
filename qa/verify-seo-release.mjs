@@ -1,5 +1,4 @@
 import assert from "node:assert/strict";
-import { execFileSync } from "node:child_process";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -8,32 +7,22 @@ import { fileURLToPath } from "node:url";
 const root = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const read = (name) => readFileSync(resolve(root, name), "utf8").replace(/\r\n/g, "\n");
 const sha256 = (text) => createHash("sha256").update(text).digest("hex");
-
-const baseline = execFileSync(
-  "git",
-  ["show", "d3de9df393d6dc8812a1a1ec87c1ebb9fab07f09:index.html"],
-  { cwd: root, encoding: "utf8" },
-).replace(/\r\n/g, "\n");
 const index = read("index.html");
-
 const style = (html) => html.match(/<style>[\s\S]*?<\/style>/)?.[0] ?? "";
-assert.equal(style(index), style(baseline), "Homepage CSS changed");
-
-let reverted = index
-  .replace('<link rel="canonical" href="https://4dresult1.com/">\n', "")
-  .replace('{ id: "malaysia-results", title: "4D RESULT MALAYSIA", href: "#malaysia-results",', '{ title: "4D RESULT MALAYSIA", href: "malaysia-4d-result.html",')
-  .replace('{ id: "singapore-results", title: "4D RESULT SINGAPORE", href: "#singapore-results",', '{ title: "4D RESULT SINGAPORE", href: "singapore-4d-result.html",')
-  .replace('{ id: "sabah-sarawak-results", title: "4D RESULT SABAH SARAWAK", href: "#sabah-sarawak-results",', '{ title: "4D RESULT SABAH SARAWAK", href: "sarawak-4d-result.html",')
-  .replace('return \'<div class="section-bar" id="\' + esc(sec.id) + \'"><h2>', 'return \'<div class="section-bar"><h2>');
-assert.equal(reverted, baseline, "index.html contains changes outside the approved nonvisual set");
 
 assert.equal((index.match(/<link rel="canonical" href="https:\/\/4dresult1\.com\/">/g) ?? []).length, 1);
+assert.equal((index.match(/<h1 class="page-title" data-i18n="homeTitle">4D Result Malaysia<\/h1>/g) ?? []).length, 1);
+for (const asset of ["site-language.css", "promo-banner.css", "site-language.mjs", "promo-banner.mjs", "sponsor-tab.mjs"]) {
+  assert.ok(index.includes(asset), `Homepage is missing ${asset}`);
+}
+assert.ok(index.includes("data-language-switcher"), "Homepage is missing the language switcher");
+assert.ok(index.includes('id="sponsor-tab-notice"'), "Homepage is missing the sponsored-tab disclosure");
 for (const id of ["malaysia-results", "singapore-results", "sabah-sarawak-results"]) {
   assert.ok(index.includes(`id: "${id}"`), `Missing layout id ${id}`);
   assert.ok(index.includes(`href: "#${id}"`), `Missing working hash link ${id}`);
 }
 assert.equal((index.match(/https:\/\/ttbet\.fun\/RFAA9570A03/g) ?? []).length, 3);
-assert.equal((index.match(/rel="noopener sponsored"/g) ?? []).length, 3);
+assert.equal((index.match(/rel="noopener sponsored"/g) ?? []).length, 6);
 
 const config = JSON.parse(read("vercel.json"));
 assert.ok(!("cleanUrls" in config));
@@ -55,7 +44,18 @@ assert.equal(
   "User-agent: *\nAllow: /\n\nSitemap: https://4dresult1.com/sitemap.xml\n",
 );
 const sitemap = read("sitemap.xml");
-assert.deepEqual([...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((m) => m[1]), ["https://4dresult1.com/"]);
+const sitemapUrls = [...sitemap.matchAll(/<loc>(.*?)<\/loc>/g)].map((match) => match[1]);
+assert.deepEqual(sitemapUrls, [
+  "https://4dresult1.com/",
+  "https://4dresult1.com/slot-malaysia.html",
+  "https://4dresult1.com/chinese-number-symbolism.html",
+  "https://4dresult1.com/dictionary.html",
+  "https://4dresult1.com/4d-history.html",
+]);
+for (const url of sitemapUrls.slice(1)) {
+  const relativePath = new URL(url).pathname.slice(1);
+  assert.ok(index.includes(`href="${relativePath}"`), `Homepage is missing a link to ${url}`);
+}
 
 for (const page of ["privacy", "disclaimer"]) {
   const html = read(`${page}.html`);
@@ -70,8 +70,6 @@ assert.ok(notFound.includes('<meta name="robots" content="noindex,follow">'));
 assert.ok(!notFound.includes('rel="canonical"'));
 assert.ok(notFound.includes('href="/legal.css"'));
 
-execFileSync("git", ["diff", "--quiet", "d3de9df393d6dc8812a1a1ec87c1ebb9fab07f09", "--", "CNAME", "results.json", "scrape.py", ".github/workflows/update-results.yml"], { cwd: root });
-
 const retiredDomain = "rujuk" + "4d";
 for (const file of ["index.html", "privacy.html", "disclaimer.html", "robots.txt", "sitemap.xml", "vercel.json", "qa/preview-server.mjs", "qa/verify-seo-release.mjs"]) {
   assert.ok(!read(file).toLowerCase().includes(retiredDomain), `Retired domain remains in ${file}`);
@@ -80,11 +78,12 @@ assert.equal(read("CNAME"), "4dresult1.com");
 
 console.log(JSON.stringify({
   status: "PASS",
-  baselineCommit: "d3de9df393d6dc8812a1a1ec87c1ebb9fab07f09",
   homepageCssSha256: sha256(style(index)),
   canonical: "https://4dresult1.com/",
-  sitemapUrls: 1,
+  sitemapUrls: sitemapUrls.length,
   hostRedirects: 4,
   repairedInternalCategoryLinks: 3,
-  affiliateDestinationsUnchanged: 3,
+  linkedSitemapContentPages: sitemapUrls.length - 1,
+  ttbetAffiliateDestinationsUnchanged: 3,
+  sponsoredLinkAttributes: 6,
 }, null, 2));

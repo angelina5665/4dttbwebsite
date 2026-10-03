@@ -6,8 +6,14 @@
 <title>4D VIP - Live 4D Result Today, Toto Magnum Damacai Malaysia</title>
 <meta name="description" content="Check 4D result live. Magnum 4D, 4D Toto, Damacai 4D result, Sabah 88 Lotto 4D, Sarawak Special Cash Sweep 4D, STC 4D, Singapore Pools 4D. Keputusan Hari Ini 4D in Sabah, Sarawak, Malaysia.">
 <meta name="keywords" content="4d,result,live,damacai,magnum 4d,toto 4d,keputusan 4d">
+<link rel="canonical" href="https://4dresult1.com/">
 <link rel="icon" type="image/png" sizes="64x64" href="favicon.png?v=1">
 <link rel="apple-touch-icon" href="apple-touch-icon.png?v=1">
+<link rel="stylesheet" href="site-language.css">
+<link rel="stylesheet" href="promo-banner.css">
+<script type="module" src="site-language.mjs"></script>
+<script type="module" src="promo-banner.mjs"></script>
+<script type="module" src="sponsor-tab.mjs"></script>
 <style>
 /* ============ base ============ */
 *{box-sizing:border-box}
@@ -62,6 +68,7 @@ a{color:inherit}
   border:1px solid #b4b4b4;box-shadow:0 0 2px 1px #ddd;
 }
 .belowcard{margin-top:14px}
+.page-title{margin:16px 12px 0;text-align:center;font-size:clamp(22px,3vw,30px);line-height:1.25;font-weight:700}
 .updated{text-align:center;font-size:12.5px;color:#777;margin:12px 0 0}
 
 /* ============ layout ============ */
@@ -194,6 +201,7 @@ body{background:#f4f5f7}
 .chips button:hover{border-color:#d9b45b;background:#fdf6e3}
 .totop{position:fixed;right:16px;bottom:16px;z-index:300;width:44px;height:44px;border-radius:50%;border:0;background:#17181c;color:#d9b45b;font-size:20px;cursor:pointer;display:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
 .totop.show{display:block}
+.glossary-access{text-align:center;margin:4px 12px 0}.glossary-access a{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:44px;padding:8px 15px;border:1px solid #b8bec8;border-radius:6px;background:#fff;color:#3e5143;font-size:14px;font-weight:650;text-decoration:none}.glossary-access a:hover{border-color:#8e9e83;background:#f4f7ed}.glossary-access a:focus-visible{outline:3px solid #8d691e;outline-offset:3px}.sponsor-tab-notice{display:block;margin:4px 12px 0;text-align:center;color:#5c626a;font-size:12px}
 
 /* ============ top slider ============ */
 .tswrap{max-width:1320px;margin:14px auto 0;padding:0 12px}
@@ -210,6 +218,13 @@ body{background:#f4f5f7}
 .ts-dots button.on{background:#fff;width:22px}
 .ts-tag{position:absolute;top:6px;right:8px;background:rgba(0,0,0,.55);color:#fff;font-size:10.5px;padding:1px 6px;border-radius:3px;z-index:2}
 @media (max-width:767px){
+  .center-container{padding:0 6px}
+  .box{min-width:0}
+  .brand{flex:0 0 auto;gap:4px;padding:6px 8px;white-space:nowrap}
+  .brand b{font-size:20px;white-space:nowrap}
+  .dropdown>button{padding:8px 4px;font-size:12px;gap:4px;white-space:nowrap}
+  .site-language>span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  .site-language select{width:82px;min-width:0;padding-left:6px;padding-right:16px;font-size:12px}
   .tswrap{padding:0;margin-top:0}
   .topslider{aspect-ratio:2/1;border-radius:0}
   .ts-arrow{display:none}
@@ -222,14 +237,14 @@ body{background:#f4f5f7}
   <div class="center-container">
     <div class="box">
       <div class="dropdown" id="dateDropdown">
-        <button type="button" aria-expanded="false">Result</button>
+        <button type="button" aria-expanded="false" data-i18n="results">Search results</button>
         <ul class="dropdown-menu" id="dateMenu"></ul>
       </div>
     </div>
     <a class="brand" href="./">
       <b>4D VIP</b><span class="live">LIVE</span>
     </a>
-    <div class="box"></div>
+    <div class="box" style="justify-content:flex-end"><label class="site-language"><span data-i18n="language">Language</span><select data-language-switcher aria-label="Language"><option value="en">English</option><option value="zh">中文</option><option value="ms">Bahasa Melayu</option></select></label></div>
   </div>
 </nav>
 
@@ -290,10 +305,12 @@ body{background:#f4f5f7}
 })();
 </script>
 
-<div class="container"><p id="updated" class="updated"></p><p id="nextdraw" class="statusline"></p></div>
+<div class="container"><h1 class="page-title" data-i18n="homeTitle">4D Result Malaysia</h1><p id="updated" class="updated"></p><p id="nextdraw" class="statusline"></p></div>
 
-<div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" aria-label="Check your 4D number"><button type="button" id="checkbtn">Check</button></div>
+<div class="checker"><input id="checknum" inputmode="numeric" maxlength="4" placeholder="Check your number — e.g. 1234" data-i18n-placeholder="checkPlaceholder" aria-label="Check your 4D number"><button type="button" id="checkbtn" data-i18n="check">Check</button></div>
 <p id="checkmsg" class="checkmsg"></p>
+<p class="glossary-access"><a href="dictionary.html"><span data-i18n="dictionaryLink">Search the number dictionary</span> <span aria-hidden="true">→</span></a> <a href="4d-history.html"><span data-i18n="historyLink">Search 4D prize history</span> <span aria-hidden="true">→</span></a></p>
+<small class="sponsor-tab-notice" id="sponsor-tab-notice" data-i18n="sponsorTabNotice">A sponsored tab may open on the first button click (50% chance) or first Back action (80% chance), each at most once per tab session.</small>
 <div class="chips" id="chips"></div>
 
 <main class="container" id="app"></main>
@@ -303,29 +320,33 @@ body{background:#f4f5f7}
 <footer class="container">
   <div class="footsec">
     <h3>4D Result | 4D Toto | Magnum 4D | Damacai</h3>
-    <p>Looking for the latest <b>4D result</b> today in Malaysia? This website provides timely updates for reference purposes. Stay informed with the latest draw results from the major providers, updated in real time.</p>
+    <p data-i18n="homeFooterIntro">Looking for the latest 4D result today in Malaysia? This website provides timely updates for reference purposes. Stay informed with the latest draw results from the major providers, updated in real time.</p>
   </div>
   <div class="footsec">
-    <h3>Check 4D Live</h3>
-    <p>We show 4D result information from major providers such as Magnum 4D, Damacai and Toto, so you can easily check and compare the latest results. All draw results are updated regularly so you stay informed.</p>
+    <h3 data-i18n="homeFooterLiveTitle">Check 4D Live</h3>
+    <p data-i18n="homeFooterLive">We show 4D result information from major providers such as Magnum 4D, Damacai and Toto, so you can easily check and compare the latest results. All draw results are updated regularly so you stay informed.</p>
   </div>
   <div class="footsec">
     <h3>Keputusan 4D | 4D Toto | Magnum 4D | Damacai</h3>
-    <p>Adakah anda ingin mengetahui keputusan 4D terkini? Laman web kami menyediakan kemas kini terkini untuk rujukan sahaja. Kami memaparkan keputusan daripada pembekal utama supaya anda boleh menyemak maklumat dengan mudah.</p>
+    <p data-i18n="homeFooterMalay">Adakah anda ingin mengetahui keputusan 4D terkini? Laman web kami menyediakan kemas kini terkini untuk rujukan sahaja. Kami memaparkan keputusan daripada pembekal utama supaya anda boleh menyemak maklumat dengan mudah.</p>
   </div>
   <div class="footsec">
-    <h3>What time is the 4D result today?</h3>
-    <p>The 4D draw results are usually released in the evening (Malaysia time). Results are updated on this website shortly after release, for reference purposes only.</p>
+    <h3 data-i18n="homeFooterTimeTitle">What time is the 4D result today?</h3>
+    <p data-i18n="homeFooterTime">The 4D draw results are usually released in the evening (Malaysia time). Results are updated on this website shortly after release, for reference purposes only.</p>
   </div>
   <div class="footsec">
-    <h3>Disclaimer</h3>
-    <p>Results shown here are for reference only. Please verify with the official operators. This site is not affiliated with Magnum, Sports Toto, Da Ma Cai, Cash Sweep, Sabah 88, STC or Singapore Pools. Play responsibly &mdash; 21 and above only.</p>
+    <h3 data-i18n="disclaimer">Disclaimer</h3>
+    <p data-i18n="homeFooterDisclaimer">Results shown here are for reference only. Please verify with the official operators. This site is not affiliated with Magnum, Sports Toto, Da Ma Cai, Cash Sweep, Sabah 88, STC or Singapore Pools. Play responsibly — 21 and above only.</p>
   </div>
-  <ul class="footnav">
-    <li><a href="./">Home</a></li>
-    <li><a href="disclaimer.html">Disclaimer</a></li>
-    <li><a href="privacy.html">Privacy</a></li>
-    <li><a href="sitemap.xml">Sitemap</a></li>
+    <ul class="footnav">
+      <li><a href="./" data-i18n="home">Home</a></li>
+      <li><a href="dictionary.html" data-i18n="dictionary">Dictionary</a></li>
+      <li><a href="4d-history.html" data-i18n="history">Prize history</a></li>
+      <li><a href="chinese-number-symbolism.html" data-i18n="dailyReading">Daily Chinese Symbols</a></li>
+      <li><a href="slot-malaysia.html">Slot Malaysia guide</a></li>
+      <li><a href="disclaimer.html" data-i18n="disclaimer">Disclaimer</a></li>
+    <li><a href="privacy.html" data-i18n="privacy">Privacy</a></li>
+    <li><a href="sitemap.xml" data-i18n="sitemap">Sitemap</a></li>
   </ul>
   <div class="copyright">&copy; <span id="yr"></span> 4D VIP. All rights reserved.</div>
 </footer>
@@ -372,16 +393,17 @@ const STYLE = {
 };
 
 const LAYOUT = [
-  { title: "4D RESULT MALAYSIA", href: "malaysia-4d-result.html", bannerAfter: "afterMalaysia",
+  { id: "malaysia-results", title: "4D RESULT MALAYSIA", href: "#malaysia-results", bannerAfter: "afterMalaysia",
     items: [{ p: "gd4d" }, { p: "damacai" }, { p: "magnum" }, { p: "toto" }, { p: "totoextra" }, { p: "damacai13d" }] },
-  { title: "4D RESULT SINGAPORE", href: "singapore-4d-result.html", bannerAfter: "afterSingapore",
+  { id: "singapore-results", title: "4D RESULT SINGAPORE", href: "#singapore-results", bannerAfter: "afterSingapore",
     items: [{ p: "singapore" }, { banner: "singaporeRow" }] },
-  { title: "4D RESULT SABAH SARAWAK", href: "sarawak-4d-result.html", bannerAfter: "afterSabah",
+  { id: "sabah-sarawak-results", title: "4D RESULT SABAH SARAWAK", href: "#sabah-sarawak-results", bannerAfter: "afterSabah",
     items: [{ p: "sabah88" }, { p: "sandakan" }, { p: "cashsweep" }] }
 ];
 
 /* ============ helpers ============ */
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+const L = (key, fallback, ...args) => window.siteT ? window.siteT(key, ...args) : fallback;
 
 /* ============ block renderers ============ */
 function blkPrizes3(b) {
@@ -532,7 +554,8 @@ function render(data) {
       const r = providers[it.p];
       return r ? cardHTML(it.p, r, data) : "";
     }).join("");
-    return '<div class="section-bar"><h2><a href="' + esc(sec.href) + '">' + esc(sec.title) + '</a></h2></div>' +
+    const titleKey = {"malaysia-results":"malaysiaResults","singapore-results":"singaporeResults","sabah-sarawak-results":"borneoResults"}[sec.id];
+    return '<div class="section-bar" id="' + esc(sec.id) + '"><h2><a href="' + esc(sec.href) + '">' + esc(L(titleKey, sec.title)) + '</a></h2></div>' +
       '<div class="row">' + items + '</div>' +
       (sec.bannerAfter ? bannerHTML(sec.bannerAfter) : "");
   }).join("");
@@ -553,10 +576,12 @@ function render(data) {
 
 function showError() {
   document.getElementById("app").innerHTML =
-    '<div class="section-bar"><h2>Results are loading</h2></div>' +
+    '<div class="section-bar"><h2>' + esc(L('loadingResults','Results are loading')) + '</h2></div>' +
     '<p style="padding:24px 12px;text-align:center;color:#666">' +
-    'We could not load the latest results just now. Please refresh in a moment.</p>';
+    esc(L('resultError','We could not load the latest results just now. Please refresh in a moment.')) + '</p>';
 }
+
+document.addEventListener('site-language-change', () => { if (__data) render(__data); });
 
 function loadResults(first){
   fetch("results.json?t=" + Date.now())
