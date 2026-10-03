@@ -1,0 +1,61 @@
+name: Site health watchman
+
+on:
+  schedule:
+    # right after each evening draw, and once in the daytime
+    - cron: "50 11,12,14 * * *"
+    - cron: "20 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install a browser for the screen check
+        run: |
+          npm install --no-save --no-package-lock playwright@1.47.2
+          npx playwright install --with-deps chromium
+
+      - name: Compare every card with the live source
+        shell: bash
+        run: |
+          status=0
+          node scripts/visitor_view_check.mjs > report.txt 2>&1 || status=1
+          cat report.txt
+          exit $status
+
+      - name: Raise the alarm (opens an issue, which emails the owner)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          EXISTING=$(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "Site health alert in:title" --json number --jq 'length')
+          if [ "$EXISTING" = "0" ]; then
+            gh issue create --repo "$GITHUB_REPOSITORY" \
+              --title "Site health alert: 4dresult1.com shows stale results" \
+              --body "The automatic watchman found a problem:
+
+          $(cat report.txt)
+
+          Open a Claude session and say: fix the site health alert."
+          fi
+
+      - name: Close the alarm when healthy again
+        if: success()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for n in $(gh issue list --repo "$GITHUB_REPOSITORY" --state open --search "Site health alert in:title" --json number --jq '.[].number'); do
+            gh issue close "$n" --repo "$GITHUB_REPOSITORY" --comment "Watchman reports everything healthy again."
+          done
